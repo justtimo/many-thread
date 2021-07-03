@@ -12,7 +12,7 @@ import java.util.Map;
  *  因此，你如果创建了任何实现Iterable的类，都可以将它用在foreach语句中
  */
 public class InterableClass implements Iterable<String>{
-    String[] s="wby, wby1, wby2, wby3, wby4, wby5, wby6,wby7,wby8,wby9,wby10".split(",");
+    public String[] words="wby, wby1, wby2, wby3, wby4, wby5, wby6,wby7,wby8,wby9,wby10".split(",");
 
     @Override
     public Iterator<String> iterator() {
@@ -20,12 +20,12 @@ public class InterableClass implements Iterable<String>{
             private int index=0;
             @Override
             public boolean hasNext() {
-                return index<s.length;
+                return index<words.length;
             }
 
             @Override
             public String next() {
-                return s[index++];
+                return words[index++];
             }
         };
     }
