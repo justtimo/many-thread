@@ -18,9 +18,10 @@ class Toy {
   Toy() {}
   Toy(int i) {}
 }
-class FancyToy extends Toy
-implements HasBatteries, Waterproof, Shoots {
-  FancyToy() { super(1); }
+class FancyToy extends Toy implements HasBatteries, Waterproof, Shoots {
+  FancyToy() {
+    super(1);
+  }
 }
 
 public class ToyTest {

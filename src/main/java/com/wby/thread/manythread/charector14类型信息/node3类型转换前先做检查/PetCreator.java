@@ -1,8 +1,8 @@
 //: typeinfo/pets/PetCreator.java
 // Creates random sequences of Pets.
-package com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查;
+package com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查;
 
-import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.pets.Pet;
+import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.pets.Pet;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,8 +36,10 @@ import java.util.Random;
  */
 public abstract class PetCreator {
   private Random rand = new Random(47);
+
   // The List of the different types of Pet to create:
   public abstract List<Class<? extends Pet>> types();
+
   public Pet randomPet() { // Create one random Pet
     int n = rand.nextInt(types().size());
     try {
@@ -85,18 +87,24 @@ class ForNameCreator extends PetCreator {
           "typeinfo.pets.Mouse",
           "typeinfo.pets.Hamster"
   };
+
   @SuppressWarnings("unchecked")
   private static void loader() {
     try {
       for(String name : typeNames)
         types.add(
-                (Class<? extends Pet>)Class.forName(name));
+                (Class<? extends Pet>) Class.forName(name)
+        );
     } catch(ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
   }
-  static { loader(); }
-  public List<Class<? extends Pet>> types() {return types;}
+  static {
+    loader();
+  }
+  public List<Class<? extends Pet>> types() {
+    return types;
+  }
 } ///:~
 /**
 * @Description:  loader方法用Class.forName()创建了Class对象的List，这可能会产生ClassNotFoundException，这么做是有意义的，因为你传递给它的是

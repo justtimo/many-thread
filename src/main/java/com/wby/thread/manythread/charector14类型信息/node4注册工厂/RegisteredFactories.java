@@ -33,8 +33,9 @@ class Part {
   public String toString() {
     return getClass().getSimpleName();
   }
-  static List<Factory<? extends Part>> partFactories =
-    new ArrayList<Factory<? extends Part>>();
+
+  static List<Factory<? extends Part>> partFactories = new ArrayList<Factory<? extends Part>>();
+
   static {
     // Collections.addAll() gives an "unchecked generic
     // array creation ... for varargs parameter" warning.
@@ -57,22 +58,21 @@ class Filter extends Part {}
 
 class FuelFilter extends Filter {
   // Create a Class Factory for each specific type:
-  public static class Factory
-  implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<FuelFilter> {
-    public FuelFilter create() { return new FuelFilter(); }
+  public static class Factory implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<FuelFilter> {
+    public FuelFilter create() {
+      return new FuelFilter();
+    }
   }
 }
 
 class AirFilter extends Filter {
-  public static class Factory
-  implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<AirFilter> {
+  public static class Factory implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<AirFilter> {
     public AirFilter create() { return new AirFilter(); }
   }
 }
 
 class CabinAirFilter extends Filter {
-  public static class Factory
-  implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<CabinAirFilter> {
+  public static class Factory implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<CabinAirFilter> {
     public CabinAirFilter create() {
       return new CabinAirFilter();
     }
@@ -80,8 +80,7 @@ class CabinAirFilter extends Filter {
 }
 
 class OilFilter extends Filter {
-  public static class Factory
-  implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<OilFilter> {
+  public static class Factory implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<OilFilter> {
     public OilFilter create() { return new OilFilter(); }
   }
 }
@@ -89,15 +88,13 @@ class OilFilter extends Filter {
 class Belt extends Part {}
 
 class FanBelt extends Belt {
-  public static class Factory
-  implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<FanBelt> {
+  public static class Factory implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<FanBelt> {
     public FanBelt create() { return new FanBelt(); }
   }
 }
 
 class GeneratorBelt extends Belt {
-  public static class Factory
-  implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<GeneratorBelt> {
+  public static class Factory implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<GeneratorBelt> {
     public GeneratorBelt create() {
       return new GeneratorBelt();
     }
@@ -105,8 +102,7 @@ class GeneratorBelt extends Belt {
 }
 
 class PowerSteeringBelt extends Belt {
-  public static class Factory
-  implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<PowerSteeringBelt> {
+  public static class Factory implements com.wby.thread.manythread.charector14类型信息.node4注册工厂.Factory<PowerSteeringBelt> {
     public PowerSteeringBelt create() {
       return new PowerSteeringBelt();
     }

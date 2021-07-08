@@ -1,6 +1,6 @@
 //: typeinfo/FamilyVsExactType.java
 // The difference between instanceof and class
-package com.wby.thread.manythread.charector14类型信息.node5;
+package com.wby.thread.manythread.charector14类型信息.node5instanceof和Class的等价性;
 
 import static com.wby.thread.manythread.net.mindview.util.Print.print;
 

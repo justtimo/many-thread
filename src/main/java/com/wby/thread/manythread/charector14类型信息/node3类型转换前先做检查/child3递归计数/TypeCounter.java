@@ -1,9 +1,9 @@
 //: net/mindview/util/TypeCounter.java
 // Counts instances of a type family.
-package com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.child3递归计数;
+package com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child3递归计数;
 
-import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.pets.Pet;
-import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.pets.Pets;
+import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.pets.Pet;
+import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.pets.Pets;
 
 import java.util.HashMap;
 
@@ -16,24 +16,27 @@ import static com.wby.thread.manythread.net.mindview.util.Print.printnb;
  */
 public class TypeCounter extends HashMap<Class<?>,Integer>{
   private Class<?> baseType;
+
   public TypeCounter(Class<?> baseType) {
     this.baseType = baseType;
   }
+
   public void count(Object obj) {
     Class<?> type = obj.getClass();
-    if(!baseType.isAssignableFrom(type))
+    if(!baseType.isAssignableFrom(type)){
       throw new RuntimeException(obj + " incorrect type: "
-        + type + ", should be type or subtype of "
-        + baseType);
+              + type + ", should be type or subtype of "
+              + baseType);
+    }
     countClass(type);
   }
   private void countClass(Class<?> type) {
     Integer quantity = get(type);
     put(type, quantity == null ? 1 : quantity + 1);
     Class<?> superClass = type.getSuperclass();
-    if(superClass != null &&
-       baseType.isAssignableFrom(superClass))
+    if(superClass != null && baseType.isAssignableFrom(superClass)){
       countClass(superClass);
+    }
   }
   public String toString() {
     StringBuilder result = new StringBuilder("{");
@@ -55,7 +58,8 @@ public class TypeCounter extends HashMap<Class<?>,Integer>{
 class PetCount4 {
   public static void main(String[] args) {
     TypeCounter counter = new TypeCounter(Pet.class);
-    for(Pet pet : Pets.createArray(20)) {
+    Pet[] array = Pets.createArray(20);
+    for(Pet pet : array) {
       printnb(pet.getClass().getSimpleName() + " ");
       counter.count(pet);
     }

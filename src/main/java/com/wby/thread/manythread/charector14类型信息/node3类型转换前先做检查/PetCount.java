@@ -1,7 +1,7 @@
-package com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查;//: typeinfo/PetCount.java
+package com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查;//: typeinfo/PetCount.java
 // Using instanceof.
 
-import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.pets.*;
+import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.pets.*;
 import java.util.HashMap;
 import static com.wby.thread.manythread.net.mindview.util.Print.print;
 import static com.wby.thread.manythread.net.mindview.util.Print.printnb;
@@ -25,8 +25,7 @@ public class PetCount {
         put(type, quantity + 1);
     }
   }
-  public static void
-  countPets(PetCreator creator) {
+  public static void countPets(PetCreator creator) {
     PetCounter counter= new PetCounter();
     for(Pet pet : creator.createArray(20)) {
       // List each individual pet:

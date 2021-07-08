@@ -11,7 +11,7 @@ import static com.wby.thread.manythread.net.mindview.util.Print.print;
  *  JVM(java虚拟机)将会使用被称为“类加载器”的子系统
  *
  *  类加载器子系统实际上可以包含一条类加载器链，但是只有一个 原生类加载器 ，他是JVM实现的一部分。
- *  原声类加载器 加载的是所谓的 可信类 ，包括JAVA API类，他们通常是从本地硬盘加载的。
+ *  原生类加载器 加载的是所谓的 可信类 ，包括JAVA API类，他们通常是从本地硬盘加载的。
  *  这条链中，通常不需要添加额外的类加载器，但如果有特殊要求(以某种特殊的方式加载类，以支持web服务器应用或者在网络中下载类)，那么你有一种方式可以挂接额外的类加载器
  *
  *  所有的类是在对其第一次使用时动态加载到JVM中的。
@@ -43,7 +43,16 @@ public class SweetShop {
     new Candy();
     print("After creating Candy");
     try {
-      Class.forName("Gum");
+      Class<?> aClass = Class.forName("com.wby.thread.manythread.charector14类型信息.node2Class.Gum");
+      System.out.println("---------------");
+      System.out.println(aClass.getName());
+      System.out.println(aClass.getSimpleName());
+      System.out.println(aClass.getCanonicalName());
+      System.out.println(aClass.getClassLoader());
+      System.out.println(aClass.getDeclaredFields());
+      System.out.println(aClass.getPackage());
+      System.out.println(aClass.getTypeName());
+      System.out.println("---------------");
     } catch(ClassNotFoundException e) {
       print("Couldn't find Gum");
     }

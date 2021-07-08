@@ -1,8 +1,8 @@
-package com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.child2动态的instanceof;
+package com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child2动态的instanceof;
 
-import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.child1使用类字面常量.LiteralPetCreator;
-import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.pets.Pet;
-import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.pets.Pets;
+import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child1使用类字面常量.LiteralPetCreator;
+import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.pets.Pet;
+import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.pets.Pets;
 import com.wby.thread.manythread.net.mindview.util.MapData;
 
 import java.util.LinkedHashMap;
@@ -18,22 +18,21 @@ import static com.wby.thread.manythread.net.mindview.util.Print.printnb;
  *  如下所示：
  */
 public class PetCount3 {
-    static class PetCounter
-            extends LinkedHashMap<Class<? extends Pet>,Integer> {
+    static class PetCounter extends LinkedHashMap<Class<? extends Pet>,Integer> {
         public PetCounter() {
             super(MapData.map(LiteralPetCreator.allTypes, 0));
         }
         public void count(Pet pet) {
             // Class.isInstance() eliminates instanceofs:
-            for(Map.Entry<Class<? extends Pet>,Integer> pair
-                    : entrySet())
-                if(pair.getKey().isInstance(pet))
+            for(Map.Entry<Class<? extends Pet>,Integer> pair : entrySet()){
+                if(pair.getKey().isInstance(pet)){
                     put(pair.getKey(), pair.getValue() + 1);
+                }
+            }
         }
         public String toString() {
             StringBuilder result = new StringBuilder("{");
-            for(Map.Entry<Class<? extends Pet>,Integer> pair
-                    : entrySet()) {
+            for(Map.Entry<Class<? extends Pet>,Integer> pair : entrySet()) {
                 result.append(pair.getKey().getSimpleName());
                 result.append("=");
                 result.append(pair.getValue());

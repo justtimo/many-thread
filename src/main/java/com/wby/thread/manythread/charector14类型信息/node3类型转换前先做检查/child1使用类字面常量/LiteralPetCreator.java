@@ -1,10 +1,10 @@
 //: typeinfo/pets/LiteralPetCreator.java
 // Using class literals.
-package com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.child1使用类字面常量;
+package com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child1使用类字面常量;
 
-import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.PetCount;
-import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.PetCreator;
-import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.child4类型转换前先做检查.pets.*;
+import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.PetCount;
+import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.PetCreator;
+import com.wby.thread.manythread.charector14类型信息.node3类型转换前先做检查.pets.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,14 +18,19 @@ public class LiteralPetCreator extends PetCreator {
   // No try block needed.
   @SuppressWarnings("unchecked")
   public static final List<Class<? extends Pet>> allTypes =
-    Collections.unmodifiableList(Arrays.asList(
-      Pet.class, Dog.class, Cat.class,  Rodent.class,
-      Mutt.class, Pug.class, EgyptianMau.class, Manx.class,
-      Cymric.class, Rat.class, Mouse.class,Hamster.class));
+          Collections.unmodifiableList(
+                  Arrays.asList(
+                    Pet.class, Dog.class, Cat.class,  Rodent.class,
+                    Mutt.class, Pug.class, EgyptianMau.class, Manx.class,
+                    Cymric.class, Rat.class, Mouse.class, Hamster.class
+                  )
+          );
   // Types for random creation:
   private static final List<Class<? extends Pet>> types =
-    allTypes.subList(allTypes.indexOf(Mutt.class),
-      allTypes.size());
+    allTypes.subList(
+            allTypes.indexOf(Mutt.class),
+            allTypes.size()
+    );
   public List<Class<? extends Pet>> types() {
     return types;
   }
@@ -39,7 +44,7 @@ public class LiteralPetCreator extends PetCreator {
 * @Description: 在即将出现的PetCount3.java示例中，我们需要先用所有的Pet类型来预加载一个Map(而仅仅只是那些将要随机生成的类型)，因此allTypes List是必需的。
  *  types列表是allTypes的一部分(通过使用List.subList()创建的)，他包含了确定的宠物类型，因此它被用于随机Pet生成。
  *
- *这一次，生成的types的代码不需要放在try内，因为他会在编译时得到检查，因此他不会抛出任何异常，这与Class.forName()不同
+ *  这一次，生成的types的代码不需要放在try内，因为他会在编译时得到检查，因此他不会抛出任何异常，这与Class.forName()不同
  *
  * 我们现在有了两种PetCreator实现。为了将第二种是实现作为默认实现，我们可以创建一个使用了LiteralPetCreator的外观
 */

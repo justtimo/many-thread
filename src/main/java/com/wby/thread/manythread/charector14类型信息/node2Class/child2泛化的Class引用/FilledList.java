@@ -50,12 +50,17 @@ class GenericToyTest {
     // Produces exact type:
     FancyToy fancyToy = ftClass.newInstance();
     Class<? super FancyToy> up = ftClass.getSuperclass();
-    // This won't compile:
-    // Class<Toy> up2 = ftClass.getSuperclass();
-    // Only produces Object:
+     //This won't compile:
+    //Class<Toy> up2 = ftClass.getSuperclass();
+    Class<Toy> up22 = (Class<Toy>) ftClass.getSuperclass();
+    //This won't compile: error
+    //Toy toy = up.newInstance();
+    Toy toy2 = (Toy) up.newInstance();
+    //Only produces Object:
     Object obj = up.newInstance();
   }
 } ///:~
+
 /**
 * @Description: 如果你手头是超类，那编译器将只允许你声明超类引用是“某个类，他是FancyToy超类”
  *  就像在Class<? super FancyToy>所看到的，而不会接受Class<Toy>这样的声明。
