@@ -1,9 +1,9 @@
 package com.wby.thread.manythread.Chapetor15泛型.node10通配符;//: generics/CovariantArrays.java
 
+import com.wby.thread.manythread.Chapetor15泛型.node10通配符.child1编译器有多聪明.Jonathan;
+
 import java.util.ArrayList;
 import java.util.List;
-
-class Jonathan extends Apple {}
 
 public class CovariantArrays {
   public static void main(String[] args) {

@@ -53,14 +53,6 @@ class IntegerFactory implements FactoryI<Integer> {
   }
 }
 
-class Widget {
-  public static class Factory implements FactoryI<Widget> {
-    public Widget create() {
-      return new Widget();
-    }
-  }
-}
-
 class FactoryConstraint {
   public static void main(String[] args) {
     new Foo2<Integer>(new IntegerFactory());
