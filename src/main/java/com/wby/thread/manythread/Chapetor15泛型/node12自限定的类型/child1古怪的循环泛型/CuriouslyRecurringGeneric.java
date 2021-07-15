@@ -17,15 +17,9 @@ public class CuriouslyRecurringGeneric
  * 为了理解其含义，努力大声说：我在创建一个新类，他继承自一个泛型类型，这个泛型类型接受我的类的名字作为其参数。
  * 当给出导出类的名字时，这个泛型基类能够实现什么呢？好吧，java中的泛型关乎参数和返回类型，因此他能产生使用导出类作为其参数和返回类型的基类。
  * 他还能将带出类型用作其域类型，甚至那些将被擦除为Object的类型。下面是表示了这种情况的一个泛型类：
+ * 见BasicHolder.java
 */
-class BasicHolder<T> {
-    T element;
-    void set(T arg) { element = arg; }
-    T get() { return element; }
-    void f() {
-        System.out.println(element.getClass().getSimpleName());
-    }
-} ///:~
+
 /**
 * @Description: 这是一个普通的泛型类型，他的一些方法将接受和产生具有其参数类型的对象，还有一个方法将在其存储的域上执行操作(尽管只是
  * 在这个域上执行Object操作)。我们可以在一个古怪的循环泛型中使用BasicHolder：
