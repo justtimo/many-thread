@@ -4,8 +4,11 @@ package com.wby.thread.manythread.Chaptor16数组.node6创建测试数据.child3
 import com.wby.thread.manythread.net.mindview.util.CollectionData;
 import com.wby.thread.manythread.net.mindview.util.CountingGenerator;
 import com.wby.thread.manythread.net.mindview.util.Generator;
+import com.wby.thread.manythread.net.mindview.util.RandomGenerator;
 
 import java.util.Arrays;
+
+import static com.wby.thread.manythread.net.mindview.util.Print.print;
 
 /**
 * @Description:  为了接受Generator并产生数组，我们需要两个转换工具。
@@ -55,3 +58,126 @@ class TestGenerated {
 [0, 1, 2, 3]
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 *///:~
+/**
+* @Description: 即使数组a被初始化过，其中的那些值也在将其传递给Generated.array()之后被覆写了，因为这个方法会替换这些值(但是会保证原数组的正确性)。
+ * b的初始化展示了从无到有的创建填充了元素的数组
+ *
+ * 泛型不能用于基本类型，而我们想用生成器来填充基本类型数组。为了解决这个问题，我们创建了一个转换器，他可以接受任意的包装器对象数组，并将其转换为相应的
+ * 基本类型数组。如果没有这个工具，我们就必须为所有的基本类型创建特殊的生成器。
+*/
+class ConvertTo {
+  public static boolean[] primitive(Boolean[] in) {
+    boolean[] result = new boolean[in.length];
+    for(int i = 0; i < in.length; i++)
+      result[i] = in[i]; // Autounboxing
+    return result;
+  }
+  public static char[] primitive(Character[] in) {
+    char[] result = new char[in.length];
+    for(int i = 0; i < in.length; i++)
+      result[i] = in[i];
+    return result;
+  }
+  public static byte[] primitive(Byte[] in) {
+    byte[] result = new byte[in.length];
+    for(int i = 0; i < in.length; i++)
+      result[i] = in[i];
+    return result;
+  }
+  public static short[] primitive(Short[] in) {
+    short[] result = new short[in.length];
+    for(int i = 0; i < in.length; i++)
+      result[i] = in[i];
+    return result;
+  }
+  public static int[] primitive(Integer[] in) {
+    int[] result = new int[in.length];
+    for(int i = 0; i < in.length; i++)
+      result[i] = in[i];
+    return result;
+  }
+  public static long[] primitive(Long[] in) {
+    long[] result = new long[in.length];
+    for(int i = 0; i < in.length; i++)
+      result[i] = in[i];
+    return result;
+  }
+  public static float[] primitive(Float[] in) {
+    float[] result = new float[in.length];
+    for(int i = 0; i < in.length; i++)
+      result[i] = in[i];
+    return result;
+  }
+  public static double[] primitive(Double[] in) {
+    double[] result = new double[in.length];
+    for(int i = 0; i < in.length; i++)
+      result[i] = in[i];
+    return result;
+  }
+} ///:~
+/**
+* @Description:  primitive方法的每个版本都可以创建适当的具有恰当长度的基本类型数组 ，然后向其中复制包装器类型数组in中的每个元素，注意，下面的表达式中
+ * 会自动进行 自动拆包：result[i]=in[i];
+ *
+ * 下面的例子展示了如何将ConverTo应用于两个版本的Generated.array()上：
+*/
+class PrimitiveConversionDemonstration {
+  public static void main(String[] args) {
+    Integer[] a = Generated.array(Integer.class,
+            new CountingGenerator.Integer(), 15);
+    int[] b = ConvertTo.primitive(a);
+    System.out.println(Arrays.toString(b));
+    boolean[] c = ConvertTo.primitive(
+            Generated.array(Boolean.class,
+                    new CountingGenerator.Boolean(), 7));
+    System.out.println(Arrays.toString(c));
+  }
+} /* Output:
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+[true, false, true, false, true, false, true]
+*///:~
+/**
+* @Description:  最后，西面的程序将使用RandomGenerator中的类来测试这些数组生成工具：
+*/
+class TestArrayGeneration {
+  public static void main(String[] args) {
+    int size = 6;
+    boolean[] a1 = ConvertTo.primitive(Generated.array(
+            Boolean.class, new RandomGenerator.Boolean(), size));
+    print("a1 = " + Arrays.toString(a1));
+    byte[] a2 = ConvertTo.primitive(Generated.array(
+            Byte.class, new RandomGenerator.Byte(), size));
+    print("a2 = " + Arrays.toString(a2));
+    char[] a3 = ConvertTo.primitive(Generated.array(
+            Character.class,
+            new RandomGenerator.Character(), size));
+    print("a3 = " + Arrays.toString(a3));
+    short[] a4 = ConvertTo.primitive(Generated.array(
+            Short.class, new RandomGenerator.Short(), size));
+    print("a4 = " + Arrays.toString(a4));
+    int[] a5 = ConvertTo.primitive(Generated.array(
+            Integer.class, new RandomGenerator.Integer(), size));
+    print("a5 = " + Arrays.toString(a5));
+    long[] a6 = ConvertTo.primitive(Generated.array(
+            Long.class, new RandomGenerator.Long(), size));
+    print("a6 = " + Arrays.toString(a6));
+    float[] a7 = ConvertTo.primitive(Generated.array(
+            Float.class, new RandomGenerator.Float(), size));
+    print("a7 = " + Arrays.toString(a7));
+    double[] a8 = ConvertTo.primitive(Generated.array(
+            Double.class, new RandomGenerator.Double(), size));
+    print("a8 = " + Arrays.toString(a8));
+  }
+} /* Output:
+a1 = [true, false, true, false, false, true]
+a2 = [104, -79, -76, 126, 33, -64]
+a3 = [Z, n, T, c, Q, r]
+a4 = [-13408, 22612, 15401, 15161, -28466, -12603]
+a5 = [7704, 7383, 7706, 575, 8410, 6342]
+a6 = [7674, 8804, 8950, 7826, 4322, 896]
+a7 = [0.01, 0.2, 0.4, 0.79, 0.27, 0.45]
+a8 = [0.16, 0.87, 0.7, 0.66, 0.87, 0.59]
+*///:~
+/**
+* @Description:  这些测试还可以确保ConvertTo.primitive方法的每个版本都可以正确的工作。
+*/
