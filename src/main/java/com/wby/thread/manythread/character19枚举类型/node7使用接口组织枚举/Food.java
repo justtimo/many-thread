@@ -42,20 +42,9 @@ class TypeOfFood {
 /**
  * 如果enum类型实现了Food接口，那么我们就可以将其实例向上转型为Food，所以上例中的所有东西都是Food。
  * 然而，当你需要与一大堆类型打交道时，接口就不如enum好用了。例如，如果你想创建一个"枚举的枚举"，那么可以创建一个新的enum，然后用其实例包装Food中的每一个enum类，
+ *    见Course
  */
-enum Course {
-  APPETIZER(Food.Appetizer.class),
-  MAINCOURSE(Food.MainCourse.class),
-  DESSERT(Food.Dessert.class),
-  COFFEE(Food.Coffee.class);
-  private Food[] values;
-  private Course(Class<? extends Food> kind) {
-    values = kind.getEnumConstants();
-  }
-  public Food randomSelection() {
-    return Enums.random(values);
-  }
-} ///:~
+
 /**
  * 在上面的程序中，每一个Course的实例都将其对应的Class对象作为构造器的参数。通过 getEnumConstantsO）方法，可以从该Class对象中取得某个Food子类的所有enum实例。
  * 这些实例在randomSelectionO中被用到。因此，通过从每一个Course实例中随机地选择一个Food，我们便能够生成一份菜单∶
