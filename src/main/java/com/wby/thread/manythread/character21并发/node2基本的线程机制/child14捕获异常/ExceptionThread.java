@@ -5,6 +5,47 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
+class MyThread implements Runnable {
+
+  @Override
+  public void run() {
+    Thread t = Thread.currentThread();
+    System.out.println("run() by " + t);
+    System.out.println(
+            "eh = " + t.getUncaughtExceptionHandler());
+    throw new RuntimeException();
+  }
+
+  public static void main(String[] args) {
+    ExecutorService executorService = Executors.newCachedThreadPool();
+    executorService.execute(new MyThread());
+  }
+}
+class MyExceptionHandler implements Thread.UncaughtExceptionHandler{
+
+  @Override
+  public void uncaughtException(Thread t, Throwable e) {
+    System.out.println("caught " + e);
+  }
+}
+class MyThreadFactory implements ThreadFactory{
+
+  @Override
+  public Thread newThread(Runnable r) {
+    Thread thread = new Thread(r);
+    thread.setUncaughtExceptionHandler(new MyExceptionHandler());
+    thread.setName("wby");
+    return thread;
+  }
+}
+class MyExceptionMainClass{
+  public static void main(String[] args) {
+    Thread.setDefaultUncaughtExceptionHandler(new MyExceptionHandler());
+    ExecutorService executorService =
+            Executors.newCachedThreadPool(/*new MyThreadFactory()*/);
+    executorService.execute(new MyThread());
+  }
+}
 /**
  * 由于线程的本质特性，使得你不能捕获从线程中逃逸的异常。—日异常逃出任务的run（方法，它就会向外传播到控制台，除非你采取特殊的步骤捕获这种错误的异常。
  * 在Java SE5之前，你可以使用线程组来捕获这些异常，但是有了Java SE5，就可以用Executor来解决这个问题，因此你就不再需要了解有关线程组的任何知识了

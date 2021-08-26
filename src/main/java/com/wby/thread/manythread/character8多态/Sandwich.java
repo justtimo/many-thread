@@ -1,7 +1,8 @@
 //: polymorphism/Sandwich.java
 // Order of constructor calls.
 package com.wby.thread.manythread.character8多态;
-import static net.mindview.util.Print.*;
+import static com.wby.thread.manythread.net.mindview.util.Print.print;
+
 
 class Meal {
   Meal() { print("Meal()"); }

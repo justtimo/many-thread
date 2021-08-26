@@ -1,14 +1,5 @@
 package com.wby.thread.manythread.character9接口.node1抽象类和抽象方法;
 
-import com.wby.thread.manythread.character21并发.node9性能调优.child2免锁容器.Tester;
-import com.wby.thread.manythread.net.mindview.util.CountingGenerator;
-import com.wby.thread.manythread.net.mindview.util.MapData;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 /**
  * 在第8章所有"乐器"的例子中，基类Instrument中的方法往往是"哑"（dummy）方法。若要调用这些方法，就会出现一些错误。这是因为Instrument类的目的是为它的所有导出类创建一个通用接口。
  *
@@ -33,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 第8章Instrument类可以很容易地转化成abstract类。既然使某个类成为抽象类并不需要所有的方法都是抽象的，所以仅需将某些方法声明为抽象的即可。如下图所示∶
  * 下面是修改过的"管弦乐器"的例子，其中采用了抽象类和抽象方法∶
  */
-abstract class MapTest
+/*abstract class MapTest
         extends Tester<Map<Integer,Integer>> {
     MapTest(String testId, int nReaders, int nWriters) {
         super(testId, nReaders, nWriters);
@@ -105,7 +96,7 @@ class MapComparisons {
         new ConcurrentHashMapTest(5, 5);
         Tester.exec.shutdown();
     }
-} /* Output: (Sample)
+} *//* Output: (Sample)
 Type                             Read time     Write time
 Synched HashMap 10r 0w        306052025049              0
 Synched HashMap 9r 1w         428319156207    47697347568

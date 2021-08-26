@@ -1,7 +1,8 @@
 //: polymorphism/PrivateOverride.java
 // Trying to override a private method.
 package com.wby.thread.manythread.character8多态;
-import static net.mindview.util.Print.*;
+import static com.wby.thread.manythread.net.mindview.util.Print.print;
+
 
 public class PrivateOverride {
   private void f() { print("private f()"); }

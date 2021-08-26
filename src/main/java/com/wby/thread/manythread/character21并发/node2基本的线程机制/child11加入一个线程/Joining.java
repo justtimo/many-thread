@@ -20,6 +20,7 @@ class Sleeper extends Thread {
   }
   public void run() {
     try {
+      System.out.println(getName()+" run()");
       sleep(duration);
     } catch(InterruptedException e) {
       print(getName() + " was interrupted. " +
@@ -39,6 +40,7 @@ class Joiner extends Thread {
   }
   public void run() {
    try {
+     System.out.println(getName()+" run()");
       sleeper.join();
     } catch(InterruptedException e) {
       print("Interrupted");

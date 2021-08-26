@@ -1,7 +1,8 @@
 package com.wby.thread.manythread.character8多态;//: polymorphism/Transmogrify.java
 // Dynamically changing the behavior of an object
 // via composition (the "State" design pattern).
-import static net.mindview.util.Print.*;
+import static com.wby.thread.manythread.net.mindview.util.Print.print;
+
 
 class Actor {
   public void act() {}

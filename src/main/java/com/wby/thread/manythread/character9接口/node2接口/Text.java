@@ -1,7 +1,5 @@
 package com.wby.thread.manythread.character9接口.node2接口;
 
-import static com.wby.thread.manythread.net.mindview.util.Print.print;
-
 /**
  * interface关键字使抽象的概念更向前迈进了一步。abstract关键字允许人们在类中创建一个或多个没有任何定义的方法——提供了接口部分，但是没有提供任何相应的具体实现，这些实现是由此类的继承者创建的。
  * interface这个关键字产生—个完全抽象的类，它根本就没有提供任何具体实现。它允许创建者确定方法名、参数列表和返回类型，但是没有任何方法体。接口只提供了形式，而未提供任何具体实现。
@@ -23,7 +21,7 @@ import static com.wby.thread.manythread.net.mindview.util.Print.print;
  * 读者可以在修改过的Instrument的例子中看到这一点。要注意的是，在接口中的每一个方法确实都 只是—个声明。这是编译器所允许的在接口中唯一能够存在的事物。
  * 此外，在 Instrument中没有任何方法被声明为是public的，但是它们自动就都是public的∶
  */
-interface Instrument {
+/*interface Instrument {
     // Compile-time constant:
     int VALUE = 5; // static & final
     // Cannot have method definitions:
@@ -85,7 +83,7 @@ public class Music5 {
         };
         tuneAll(orchestra);
     }
-} /* Output:
+}*/ /* Output:
 Wind.play() MIDDLE_C
 Percussion.play() MIDDLE_C
 Stringed.play() MIDDLE_C

@@ -1,6 +1,7 @@
 package com.wby.thread.manythread.character8多态;//: polymorphism/ReferenceCounting.java
 // Cleaning up shared member objects.
-import static net.mindview.util.Print.*;
+import static com.wby.thread.manythread.net.mindview.util.Print.print;
+
 
 class Shared {
   private int refcount = 0;

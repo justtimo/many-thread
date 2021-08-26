@@ -33,7 +33,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *      synchronized void f(){........}
  *      synchronized void g(){.........}
  * 所有对象都自动含有单一的锁（也称为监视器）。当在对象上调用其任意synchronized方法的时候，此对象都被加锁，这时该对象上的其他synchronized方法只有等到前一个方法调用完毕并释放了锁之后才能被调用。
- * 对于前面的方法，如果某个任务对对象调用了fO，对于同一个对象而言，就只能等到fO调用结束并释放了锁之后，其他任务才能调用f（O和gO。
+ * 对于前面的方法，如果某个任务对对象调用了f()，对于同一个对象而言，就只能等到f()调用结束并释放了锁之后，其他任务才能调用f()和g()。
  * 所以，对于某个特定对象来说，其所有synchronized方法共享同—一个锁，这可以被用来防止多个任务同时访问被编码为对象内存。
  *
  * 注意，在使用并发时，将域设置为private是非常重要的，否则，synchronized关键字就不能防止其他任务直接访问域，这样就会产生冲突。
@@ -144,13 +144,16 @@ class AttemptLocking {
         al.untimed(); // True -- lock is available
         al.timed();   // True -- lock is available
         // Now create a separate task to grab the lock:
-        new Thread() {
-            { setDaemon(true); }
-            public void run() {
-                al.lock.lock();
-                System.out.println("acquired");
-            }
-        }.start();
+        for (int i = 0; i < 10; i++) {
+            new Thread() {
+                { setDaemon(true); }
+                public void run() {
+                    al.lock.lock();
+                    System.out.println("acquired");
+                }
+            }.start();
+        }
+
         Thread.yield(); // Give the 2nd task a chance
         al.untimed(); // False -- lock grabbed by task
         al.timed();   // False -- lock grabbed by task

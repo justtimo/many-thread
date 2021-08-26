@@ -1,7 +1,7 @@
 //: polymorphism/Frog.java
 // Cleanup and inheritance.
 package com.wby.thread.manythread.character8多态;
-import static net.mindview.util.Print.*;
+import static com.wby.thread.manythread.net.mindview.util.Print.print;
 
 class Characteristic {
   private String s;

@@ -47,3 +47,51 @@ class MainThread {
  * 当从Runnable导出一个类时，它必须具有run（）方法，但是这个方法并无特殊之处——它不会产生任何内在的线程能力。
  * 要实现线程行为，你必须显式地将一个任务附着到线程上。
  */
+class Light {
+  private int localCount=10;
+  private final int id=localCount++;
+  private static int taskCount=0;
+
+  public Light(int localCount) {
+    this.localCount = localCount;
+  }
+
+  public int getLocalCount() {
+    return localCount;
+  }
+
+  public void setLocalCount(int localCount) {
+    this.localCount = localCount;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public static int getTaskCount() {
+    return taskCount;
+  }
+
+  public static void setTaskCount(int taskCount) {
+    Light.taskCount = taskCount;
+  }
+
+  public void run(){
+    while (localCount-- <1){
+      System.out.println("结束");
+      return;
+    }
+  }
+}
+class Test{
+  public static void main(String[] args) {
+    Light light = new Light(10);
+    for (int i = 0; i < 20; i++) {
+      light.run();
+      if (light.getLocalCount()<0){
+        return;
+      }
+    }
+
+  }
+}

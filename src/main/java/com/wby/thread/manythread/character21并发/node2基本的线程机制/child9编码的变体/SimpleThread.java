@@ -67,6 +67,94 @@ Thread-0(5), Thread-0(4), Thread-0(3), Thread-0(2), Thread-0(1), Thread-1(5), Th
  *
  * 有时通过使用内部类来将线程代码隐藏在类中将会很有用，就像下面这样;
  */
+class InnerByThread1{
+  private Inner inner;
+  private class Inner extends Thread{
+    public Inner() {
+      start();
+    }
+
+    @Override
+    public void run() {
+      print("InnerByThread1 run()");
+    }
+  }
+
+  public InnerByThread1() {
+    inner=new Inner();
+  }
+}
+class InnerByThread2 extends Thread{
+  private Thread t;
+
+
+  public InnerByThread2() {
+    t=new Thread(){
+      @Override
+      public void run() {
+        print("InnerByThread2 构造器方法内部类run()");
+      }
+    };
+    t.start();
+  }
+}
+
+class InnerByRunable1 {
+  InnerLLL inner ;
+  public InnerByRunable1() {
+    inner = new InnerLLL();
+    /*inner.run();*/
+  }
+  private class InnerLLL implements Runnable{
+    private Thread t;
+    public InnerLLL() {
+      t = new Thread();
+      t.start();
+    }
+    @Override
+    public void run() {
+      print("InnerByRunable1 InnerLLL run()");
+    }
+  }
+}
+class InnerByRunable2{
+  private Thread t;
+
+  public InnerByRunable2() {
+    t=new Thread(){
+      @Override
+      public void run() {
+        System.out.println("InnerByRunable2 run()");
+      }
+    };
+    t.start();
+  }
+}
+class InnerByMethod{
+  private Thread t;
+
+  public InnerByMethod() {
+  }
+  public void runTask(){
+    t=new Thread(){
+      @Override
+      public void run() {
+        System.out.println("InnerByMethod runTask() run()");
+      }
+    };
+    t.start();
+  }
+}
+class InnerTest{
+  public static void main(String[] args) {
+    new InnerByThread1();
+    new InnerByThread2();
+    new InnerByRunable1();
+    new InnerByRunable2();
+    new InnerByMethod().runTask();
+
+  }
+}
 // Using a named inner class:
 class InnerThread1 {
   private int countDown = 5;
@@ -125,6 +213,11 @@ class InnerThread2 {
 class InnerRunnable1 {
   private int countDown = 5;
   private Inner inner;
+
+  public InnerRunnable1(String name) {
+    inner = new Inner(name);
+  }
+
   private class Inner implements Runnable {
     Thread t;
     Inner(String name) {
@@ -146,9 +239,7 @@ class InnerRunnable1 {
       return t.getName() + ": " + countDown;
     }
   }
-  public InnerRunnable1(String name) {
-    inner = new Inner(name);
-  }
+
 }
 
 // Using an anonymous Runnable implementation:

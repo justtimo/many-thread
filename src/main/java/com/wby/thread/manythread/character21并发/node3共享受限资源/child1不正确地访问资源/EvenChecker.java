@@ -39,7 +39,8 @@ public class EvenChecker implements Runnable {
 } ///:~
 /**
  * 注意，在本例中可以被撤销的类不是Runnable，而所有依赖于IntGenerator对象的 EvenChecker任务将测试它，以查看它是否已经被撤销，正如你在runO）中所见。
- * 通过这种方式，共享公共资源（IntGenerator）的任务可以观察该资源的终止信号。这可以消除所谓竞争条件，即两个或更多的任务竞争响应某个条件，因此产生冲突或不一致结果的情况。
+ * 通过这种方式，共享公共资源（IntGenerator）
+ * 的任务可以观察该资源的终止信号。这可以消除所谓竞争条件，即两个或更多的任务竞争响应某个条件，因此产生冲突或不一致结果的情况。
  * 你必须仔细考虑并防范并发系统失败的所有可能途径，例如，一个任务不能依赖于另一个任务，因为任务关闭的顺序无法得到保证。这里，通过使任务依赖于非任务对象，我们可以消除潜在的竞争条件。
  *
  * testO方法通过启动大量使用相同的IntGenerator的EvenChecker，设置并执行对任何类型的 IntGenerator的测试。如果IntGenerator引发失败，那么testO将报告它并返回，否则，你必须按下Control-C来终止它。
@@ -53,6 +54,7 @@ class EvenGenerator extends IntGenerator {
     private int currentEvenValue = 0;
     public int next() {
         ++currentEvenValue; // Danger point here!
+        Thread.yield();
         ++currentEvenValue;
         return currentEvenValue;
     }
@@ -69,7 +71,7 @@ Press Control-C to exit
  * 这将使这个值处于"不恰当"的状态。为了证明这是可能发生的，EvenChecker.testO创建了—一组 EvenChecker对象，以连续地读取并输出同一个EvenGenerator，并测试检查每个数值是否都是偶数。
  * 如果不是，就会报告错误，而程序也将关闭。
  *
- * 这个程序最终将失败，因为各个EvenChecker任务在EvenGenerator处于"不恰当的"状态时，仍能够访问其中的信，息。但是，根据你使用的特定的操作系统和其他实现细节，
+ * 这个程序最终将失败，因为各个EvenChecker任务在EvenGenerator处于"不恰当的"状态时，仍能够访问其中的信息。但是，根据你使用的特定的操作系统和其他实现细节，
  * 直到 EvenCenerator完成多次循环之前，这个问题都不会被探测到。如果你希望更快地发现失败，可以尝试着将对vieldO）的调用放置到第一个和第二个递增操作之间。
  * 这只是并发程序的部分间题——如果失败的概率非常低，那么即使存在缺陷，它们也可能看起来是正确的。
  *

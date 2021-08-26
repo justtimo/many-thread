@@ -1,7 +1,7 @@
 package com.wby.thread.manythread.character8多态;//: polymorphism/PolyConstructors.java
 // Constructors and polymorphism
 // don't produce what you might expect.
-import static net.mindview.util.Print.*;
+import static com.wby.thread.manythread.net.mindview.util.Print.print;
 
 class Glyph {
   void draw() { print("Glyph.draw()"); }

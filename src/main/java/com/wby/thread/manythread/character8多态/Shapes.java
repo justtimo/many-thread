@@ -1,6 +1,8 @@
 package com.wby.thread.manythread.character8多态;//: polymorphism/Shapes.java
 // Polymorphism in Java.
-import polymorphism.shape.*;
+
+import com.wby.thread.manythread.character8多态.shape.RandomShapeGenerator;
+import com.wby.thread.manythread.character8多态.shape.Shape;
 
 public class Shapes {
   private static RandomShapeGenerator gen =

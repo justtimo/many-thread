@@ -26,6 +26,9 @@ public class CallableDemo {
       results.add(exec.submit(new TaskWithResult(i)));
     for(Future<String> fs : results)
       try {
+        if (fs.isDone()){
+          System.out.println("任务结束");
+        }
         // get() blocks until completion:
         System.out.println(fs.get());
       } catch(InterruptedException e) {
